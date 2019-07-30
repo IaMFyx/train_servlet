@@ -21,7 +21,7 @@
     </style>
 </head>
 <body>
-<h2>输入用户信息</h2>
+<h2>输入用户信息进行注册</h2>
 <div>
 <form name="form1" method="post" action="loginOK.jsp" onsubmit="return checkSubmit()">
     用户名：&ensp;&ensp;<input name="username" type="text" maxlength="16" onchange="checkName()" id="username" /><font id="font1" color="red" ></font><br/><br/>
