@@ -24,17 +24,17 @@
 <h2>输入用户信息</h2>
 <div>
 <form name="form1" method="post" action="loginOK.jsp" onsubmit="return checkSubmit()">
-    用户名:<input name="username" type="text" maxlength="16" onchange="checkName()" id="username" /><font id="font1" color="red" ></font><br/><br/>
-    姓名:<input name="realName" type="text"/><br/><br/>
-    性别：男<input type="radio" name="sex" value="male" checked="checked"/>
+    用户名：&ensp;&ensp;<input name="username" type="text" maxlength="16" onchange="checkName()" id="username" /><font id="font1" color="red" ></font><br/><br/>
+    姓名：&ensp;&ensp;&ensp;&ensp;<input name="realName" type="text"/><br/><br/>
+    性别：&ensp;&ensp;&ensp;&ensp;男<input type="radio" name="sex" value="male" checked="checked"/>
          女<input type="radio" name="sex" value="female"/><br/><br/>
-    年龄：<input type="number" name="age" min="1" max="150"/><br/><br/>
-    密码：<input type="password" name="password" id="password" maxlength="16"/><br/><br/>
+    年龄：&ensp;&ensp;&ensp;&ensp;<input type="number" name="age" min="1" max="150"/><br/><br/>
+    密码：&ensp;&ensp;&ensp;&ensp;<input type="password" name="password" id="password" maxlength="16"/><br/><br/>
     确认密码：<input type="password" name="passwordConfirm" id="passwordConfirm" onfocusout="checkPwd()"/>
             <font id="font2" color="red"></font><br/><br/>
-    电话：<input type="text" name="tel" oninput="value=value.replace(/[^\d]/g,'')"/><br/><br/>
-    邮箱：<input type="email" name="email"><br/><br/>
-    爱好：撩妹<input type="checkbox" name="hobbies" value="撩妹" checked="checked" />
+    电话：&ensp;&ensp;&ensp;&ensp;<input type="text" name="tel" oninput="value=value.replace(/[^\d]/g,'')"/><br/><br/>
+    邮箱：&ensp;&ensp;&ensp;&ensp;<input type="email" name="email"><br/><br/>
+    爱好：&ensp;&ensp;&ensp;&ensp;撩妹<input type="checkbox" name="hobbies" value="撩妹" checked="checked" />
          写代码<input type="checkbox" name="hobbies" value="写代码" />
          篮球<input type="checkbox" name="hobbies" value="篮球" />
          足球<input type="checkbox" name="hobbies" value="足球" /><br/><br/>
