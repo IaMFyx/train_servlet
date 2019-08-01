@@ -23,7 +23,7 @@
 <body>
 <h2>输入用户信息进行注册</h2>
 <div>
-<form name="form1" method="post" action="loginOK.jsp" onsubmit="return checkSubmit()">
+<form name="form1" method="post" action="success.jsp" onsubmit="return checkSubmit()">
     用户名：&ensp;&ensp;<input name="username" type="text" maxlength="16" onchange="checkName()" id="username" /><font id="font1" color="red" ></font><br/><br/>
     姓名：&ensp;&ensp;&ensp;&ensp;<input name="realName" type="text"/><br/><br/>
     性别：&ensp;&ensp;&ensp;&ensp;男<input type="radio" name="sex" value="male" checked="checked"/>
