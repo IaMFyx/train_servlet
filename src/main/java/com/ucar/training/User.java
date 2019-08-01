@@ -1,13 +1,13 @@
-package demo1;
+package com.ucar.training;
 
 public class User {
-    String username;
-    String realName;
-    String userSex;
-    String userAge;
-    String password;
-    String tel;
-    String email;
+    private String username;
+    private String realName;
+    private String userSex;
+    private String userAge;
+    private String password;
+    private String tel;
+    private String email;
 //        public User(String username, String realName, String userSex, String userAge, String password, String tel, String email){
 //            this.username=username;
 //            this.realName=realName;
