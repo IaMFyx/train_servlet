@@ -14,6 +14,8 @@
   </head>
   
   <body>
-	<h1>神州优车训练营网站</h1>
+	<h1 align="center">神州优车训练营网站</h1>
+  <%
+  %>
 </body>
 </html>
