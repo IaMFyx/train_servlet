@@ -1,6 +1,6 @@
-package com.ucar.training.Servlet;
+package com.ucar.training.controller;
 
-import com.ucar.training.UserMessage;
+import com.ucar.training.entity.UserMessage;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

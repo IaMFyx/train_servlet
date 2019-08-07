@@ -1,4 +1,4 @@
-package com.ucar.training.Servlet;
+package com.ucar.training.controller;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;

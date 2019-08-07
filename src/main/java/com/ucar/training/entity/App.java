@@ -1,4 +1,4 @@
-package com.ucar.training;
+package com.ucar.training.entity;
 
 /**
  * @author XiongMM

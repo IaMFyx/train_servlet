@@ -1,7 +1,7 @@
-package com.ucar.training.Servlet;
+package com.ucar.training.controller;
 
-import com.ucar.training.User;
-import com.ucar.training.UserMessage;
+import com.ucar.training.entity.User;
+import com.ucar.training.entity.UserMessage;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
-
 @WebServlet("/AddMessageServlet")
 public class AddMessageServlet extends HttpServlet {
     private static ArrayList<UserMessage> userMessages=new ArrayList<>();
@@ -32,6 +31,7 @@ public class AddMessageServlet extends HttpServlet {
         //dao
         userMessages.add(userMessage);
         request.getServletContext().setAttribute("userMessages",userMessages);
+
         response.sendRedirect("/training_servlet/messageBord.jsp");
     }
 

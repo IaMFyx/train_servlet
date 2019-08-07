@@ -1,8 +1,7 @@
-package com.ucar.training.Servlet;
+package com.ucar.training.controller;
 
-import com.ucar.training.User;
+import com.ucar.training.entity.User;
 
-import javax.jws.soap.SOAPBinding;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

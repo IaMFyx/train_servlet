@@ -1,4 +1,4 @@
-package com.ucar.training.Filter;
+package com.ucar.training.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -20,7 +20,7 @@ public class RegisterFilter implements Filter {
         blacklist.add("穆天翔");
         String username=req.getParameter("realName");
         if (blacklist.contains(username)){
-            resp.getWriter().print("<script language='javascript'>alert('该用户在黑名单中,无法注册');window.location='register.jsp';</script>\"");
+            resp.getWriter().print("<script language='javascript'>alert('该用户在黑名单中,无法注册');window.location='register.jsp';</script>");
         }
         else {
             chain.doFilter(req, resp);

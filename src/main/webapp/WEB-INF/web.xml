@@ -13,6 +13,7 @@
     </taglib>
   </jsp-config>
   <listener>
-    <listener-class>com.ucar.training.Listener.MyListener</listener-class>
+    <listener-class>com.ucar.training.listener.MyListener</listener-class>
   </listener>
+
 </web-app>
