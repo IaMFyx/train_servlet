@@ -23,6 +23,7 @@ public class DeleteUserServlet extends HttpServlet {
         ServletContext servletContext=request.getServletContext();
         Set<User> users=(Set)servletContext.getAttribute("users");
         Set<String> usernameSet=(Set)request.getServletContext().getAttribute("usernames");
+
         for (User user:users){
             if (user.getUsername().equals(username)){
                 users.remove(user);
@@ -31,7 +32,7 @@ public class DeleteUserServlet extends HttpServlet {
             }
         }
         servletContext.setAttribute("users",users);
-        //response.sendRedirect("message.jsp");
-        response.getWriter().print("<script language='javascript'>alert('删除成功！');window.location='message.jsp';</script>\"");
+        //response.sendRedirect("userInfo.jsp");
+        response.getWriter().print("<script language='javascript'>alert('删除成功！');window.location='userInfo.jsp';</script>");
     }
 }

@@ -14,10 +14,6 @@ import java.util.Set;
 @WebServlet("/UpdateUserServlet")
 public class UpdateUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username=(String)request.getParameter("username");
         String realName=(String)request.getParameter("realName");
         String age=(String)request.getParameter("age");
@@ -28,15 +24,21 @@ public class UpdateUserServlet extends HttpServlet {
 
         for (User user:users){
             if (user.getUsername().equals(username)){
+                users.remove(user);
                 user.setEmail(email);
                 user.setTel(tel);
                 user.setRealName(realName);
                 user.setAge(age);
+                users.add(user);
                 break;
             }
         }
+
         servletContext.setAttribute("users",users);
-        response.sendRedirect("message.jsp");
-        //response.getWriter().print("<script language='javascript'>alert('修改成功！');window.location='message.jsp';</script>");
+        response.sendRedirect("/training_servlet/userInfo.jsp");
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request,response);
     }
 }

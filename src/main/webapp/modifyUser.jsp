@@ -9,8 +9,15 @@
 <html>
 <head>
     <title>修改用户信息</title>
+    <style>
+        body{
+            text-align: center;
+            background-image: url("bg2.jpg");
+        }
+    </style>
 </head>
 <body>
+<h2>输入需要更改的信息</h2>
 <form name="form1" method="post" action="UpdateUserServlet" onsubmit="return confirm('确认修改？')">
     用户名：&ensp;&ensp;<input name="username" type="text" value="${requestScope.modifiedUser.username}" readonly /><br/><br/>
     密码：&ensp;&ensp;&ensp;&ensp;<input type="text" name="password" value="${requestScope.modifiedUser.password}" readonly/><br/><br/>
@@ -20,7 +27,7 @@
     电话：&ensp;&ensp;&ensp;&ensp;<input type="text" name="tel" maxlength="11" oninput="value=value.replace(/[^\d]/g,'')" value="${requestScope.modifiedUser.tel}"/><br/><br/>
     邮箱：&ensp;&ensp;&ensp;&ensp;<input type="email" name="email" value="${requestScope.modifiedUser.email}"><br/><br/>
     &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-    <input type="submit" name="submit" value="更新用户信息" id="sub" />
+    <input type="submit" name="submit" value="更新用户信息"  />
 
 </form>
 </body>

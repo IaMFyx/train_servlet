@@ -14,8 +14,8 @@ import java.util.Set;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
-    private Set<User> users=new HashSet<User>();
-    private Set<String> usernameSet=new HashSet<String>();
+    private static Set<User> users=new HashSet<User>();
+    private static Set<String> usernameSet=new HashSet<String>();
 
     public RegisterServlet(){
         usernameSet.add("admin");
@@ -24,7 +24,6 @@ public class RegisterServlet extends HttpServlet {
         admin.setPassword("admin");
         admin.setPrivilege("admin");
         users.add(admin);
-
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out=response.getWriter();

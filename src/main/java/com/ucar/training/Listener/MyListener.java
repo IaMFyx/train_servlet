@@ -1,5 +1,7 @@
 package com.ucar.training.Listener;
 
+import com.ucar.training.User;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -54,8 +56,8 @@ public class MyListener implements ServletContextListener,
       /* This method is called when an attribute 
          is added to a session.
       */
-      String username=(String)sbe.getSession().getAttribute("userNow");
-      System.out.println("用户："+username+"已经登录");
+      User user=(User)sbe.getSession().getAttribute("userNow");
+      System.out.println("用户："+user.getUsername()+"已经登录");
     }
 
     public void attributeRemoved(HttpSessionBindingEvent sbe) {
@@ -68,7 +70,7 @@ public class MyListener implements ServletContextListener,
       /* This method is invoked when an attribute
          is replaced in a session.
       */
-        String username=(String)sbe.getSession().getAttribute("userNow");
-        System.out.println("用户："+username+"已经登录");
+        User user=(User)sbe.getSession().getAttribute("userNow");
+        System.out.println("用户："+user.getUsername()+"已经登录");
     }
 }

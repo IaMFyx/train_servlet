@@ -48,6 +48,7 @@
         </tr>
         </c:if>
     </c:forEach>
+        <a href="register.jsp">增加用户</a>
     </c:if>
     <c:if test="${sessionScope.userNow.privilege==\"user\"}">
         <tr align="center">
@@ -61,6 +62,8 @@
         <td>${sessionScope.userNow.email}</td>
     </c:if>
 </table>
-
+<a href="messageBord.jsp">留言板</a>
+<br>
+<a href="login.jsp">退出</a>
 </body>
 </html>

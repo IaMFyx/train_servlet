@@ -20,7 +20,7 @@
 </head>
 <body>
 <h1>用户登录</h1>
-    <form action="message.jsp" method="post" onsubmit="return checkSub()">
+    <form action="userInfo.jsp" method="post" onsubmit="return checkSub()">
         用户名：<input type="text" name="username" id="username" ><br/><br>
         密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" name="password" id="password"><br><br>
         <font color="red" id="note"></font>
