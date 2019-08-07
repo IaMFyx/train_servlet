@@ -8,6 +8,7 @@ public class User {
     private String password;
     private String tel;
     private String email;
+    private String privilege;
 //        public User(String username, String realName, String userSex, String userAge, String password, String tel, String email){
 //            this.username=username;
 //            this.realName=realName;
@@ -69,5 +70,13 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPrivilege() {
+        return privilege;
+    }
+
+    public void setPrivilege(String privilege) {
+        this.privilege = privilege;
     }
 }

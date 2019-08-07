@@ -29,7 +29,9 @@
         &nbsp;&nbsp;&nbsp;&nbsp;
         <input type="reset" value="重置">
     </form>
-&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<a href="register.jsp">没有用户名？点击注册</a>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<a href="register.jsp">没有用户名？点击注册</a><br><br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<a href="upload.jsp">文件上传</a><br><br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<a href="download.jsp">文件下载</a>
 <script>
 
     var xmlHttp;

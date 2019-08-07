@@ -14,36 +14,36 @@ import java.util.Set;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        response.setContentType("text/html;charset=utf-8");
-//        request.setCharacterEncoding("utf-8");
-//        response.setCharacterEncoding("utf-8");
         PrintWriter out=response.getWriter();
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         Set<User> users=(Set)request.getServletContext().getAttribute("users");
         Set<String> usernameSet=(Set)request.getServletContext().getAttribute("usernames");
+
         if (users!=null&&usernameSet!=null){
             if (usernameSet.contains(username)){
                 for (User user:users){
                     if (user.getUsername().equals(username)){
                         if (user.getPassword().equals(password)) {
-                            request.getSession().setAttribute("userNow",username);
+                            request.getSession().setAttribute("userNow",user);
                             response.getWriter().print(0);
-                            //response.sendRedirect("message.jsp");
                         }
                         else {
-                            out.print(1);//密码不正确
+                            //密码不正确
+                            out.print(1);
                         }
                         break;
                     }
                 }
             }
             else {
-                out.print(2);//用户名不存在
+                //用户名不存在
+                out.print(2);
             }
         }
         else {
-            out.print(2);//用户名不存在
+            //用户名不存在
+            out.print(2);
         }
     }
 

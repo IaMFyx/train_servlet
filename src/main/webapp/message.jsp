@@ -20,8 +20,8 @@
     </style>
 </head>
 <body>
-<h2>${sessionScope.userNow},你好！</h2>
-<h3>注册用户信息表</h3>
+<h2>${sessionScope.userNow.username},你好！</h2>
+<h3>用户信息表</h3>
 <table align="center" border="1">
     <tr align="center">
         <th>用户名</th>
@@ -32,8 +32,9 @@
         <th>电话</th>
         <th>邮箱</th>
     </tr>
+    <c:if test="${sessionScope.userNow.privilege==\"admin\"}">
     <c:forEach items="${users}" var="user">
-        <c:if test="${user.username!=sessionScope.userNow&&user.username!=\"admin\"}">
+        <c:if test="${user.privilege==\"user\"}">
         <tr align="center">
             <td>${user.username}</td>
             <td>${user.password}</td>
@@ -42,9 +43,24 @@
             <td>${user.age}</td>
             <td>${user.tel}</td>
             <td>${user.email}</td>
+            <td><a href="ModifyUserServlet?username=${user.username}">修改</a>
+                <a href="DeleteUserServlet?username=${user.username}" onclick="return confirm('是否删除？')">删除</a></td>
         </tr>
         </c:if>
     </c:forEach>
+    </c:if>
+    <c:if test="${sessionScope.userNow.privilege==\"user\"}">
+        <tr align="center">
+        </tr>
+        <td>${sessionScope.userNow.username}</td>
+        <td>${sessionScope.userNow.password}</td>
+        <td>${sessionScope.userNow.realName}</td>
+        <td>${sessionScope.userNow.sex}</td>
+        <td>${sessionScope.userNow.age}</td>
+        <td>${sessionScope.userNow.tel}</td>
+        <td>${sessionScope.userNow.email}</td>
+    </c:if>
 </table>
+
 </body>
 </html>

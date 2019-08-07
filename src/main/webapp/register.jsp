@@ -11,7 +11,7 @@
     <title>用户注册</title>
     <style>
         body{
-            background-image: url("preview.jpg");
+            background-image: url("bg1.jpg");
             background-size: cover;
         }
 
@@ -36,6 +36,9 @@
         足球<input type="checkbox" name="hobbies" value="足球" /><br/><br/>
         个人签名：<textarea name="sign" >今天有点小帅……
              </textarea><br/><br/>
+        权限：&ensp;&ensp;&ensp;&ensp;管理员<input type="radio" name="privilege" value="admin" />
+        普通用户<input type="radio" name="privilege" value="user" checked="checked"/><br/><br/>
+        &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
         <input type="submit" name="submit" value="注册" id="sub" />
         &ensp;<input value="取消" type="reset"/>
     </form>
@@ -54,7 +57,7 @@
             v1=false;
         }
         else {
-            if (username.length<4){
+            if (username.length<6){
                 //alert("用户名长度应为6-16！");
                 document.getElementById("font1").innerHTML="用户名长度应为4-16！";
                 v1=false;

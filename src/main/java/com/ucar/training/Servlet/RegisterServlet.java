@@ -22,14 +22,12 @@ public class RegisterServlet extends HttpServlet {
         User admin=new User();
         admin.setUsername("admin");
         admin.setPassword("admin");
+        admin.setPrivilege("admin");
         users.add(admin);
 
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.setCharacterEncoding("utf-8");
-//        response.setContentType("text/html;charset=utf-8");
         PrintWriter out=response.getWriter();
-
         User user=new User();
         String username=request.getParameter("username");
         String realName=request.getParameter("realName");
@@ -38,20 +36,8 @@ public class RegisterServlet extends HttpServlet {
         String password=request.getParameter("password");
         String tel=request.getParameter("tel");
         String email=request.getParameter("email");
-        String[] hobbies=request.getParameterValues("hobbies");
-        String sign=request.getParameter("sign");
-//        out.print("用户名："+username+"<br/>"
-//                +"姓名："+realName+"<br/>"
-//                +"性别："+sex+"<br/>"
-//                +"年龄："+age+"<br/>"
-//                +"密码："+password+"<br/>"
-//                +"电话："+tel+"<br/>"
-//                +"邮箱："+email+"<br/>"
-//                +"爱好：");
-//        for (int i = 0; i <hobbies.length ; i++) {
-//            out.print(hobbies[i]+"  ");
-//        }
-//        out.print("<br/>个人签名："+sign+"<br/>");
+        String privilege=request.getParameter("privilege");
+
         user.setUsername(username);
         user.setRealName(realName);
         user.setAge(age);
@@ -59,25 +45,25 @@ public class RegisterServlet extends HttpServlet {
         user.setPassword(password);
         user.setTel(tel);
         user.setEmail(email);
+        user.setPrivilege(privilege);
+        //将用户信息加入集合，模拟数据库
         usernameSet.add(username);
         users.add(user);
         request.getServletContext().setAttribute("users",users);
         request.getServletContext().setAttribute("usernames",usernameSet);
-//        if (!users.isEmpty()){
-//            for (User user1:users) {
-//                out.print(user1.getUsername()+"<br/>");
-//            }
-//        }
-        response.sendRedirect("register.jsp");
+        //在register.jsp中提示注册成功
+        response.getWriter().print("<script language='javascript'>alert('注册成功！');window.location='register.jsp';</script>");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username=request.getParameter("username");
         if (usernameSet.contains(username)){
-            response.getWriter().print(1);//用户名已经存在
+            //用户名已经存在
+            response.getWriter().print(1);
         }
         else {
-            response.getWriter().print(0);//用户名可以用
+            //用户名可以用
+            response.getWriter().print(0);
         }
     }
 }
