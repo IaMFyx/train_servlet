@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter(filterName = "MessageFilter",urlPatterns = "/AddMessageServlet")
+@WebFilter(filterName = "MessageFilter",urlPatterns = "/messagebord/AddMessageServlet")
 public class MessageFilter implements Filter {
     public void destroy() {
     }

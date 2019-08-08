@@ -11,7 +11,7 @@
     <title>用户注册</title>
     <style>
         body{
-            background-image: url("bg1.jpg");
+            background-image: url("../image/bg1.jpg");
             background-size: cover;
         }
 
@@ -19,7 +19,7 @@
 </head>
 <body>
 <h2>输入用户信息进行注册</h2>
-    <form name="form1" method="post" action="RegisterServlet" onsubmit="return checkSubmit()">
+    <form name="form1" method="post" action="../RegisterServlet" onsubmit="return checkSubmit()">
         用户名：&ensp;&ensp;<input name="username" type="text" maxlength="16" onchange="checkName()" id="username" /><font id="font1" color="red" ></font><br/><br/>
         姓名：&ensp;&ensp;&ensp;&ensp;<input name="realName" type="text"/><br/><br/>
         性别：&ensp;&ensp;&ensp;&ensp;男<input type="radio" name="sex" value="男" checked="checked"/>
@@ -77,30 +77,33 @@
                         }
                     }
                 }
-                var url="RegisterServlet?username="+username;
-                xmlHttp.onreadystatechange=deal;
-                xmlHttp.open("GET",url,false);
+                var url="../RegisterServlet?username="+username;
+
+                xmlHttp.onreadystatechange=function (){
+                    if (xmlHttp.readyState==4&&xmlHttp.status==200){
+                        var txtHint=xmlHttp.responseText;
+                        if(txtHint==0){
+                            document.getElementById("font1").innerHTML="用户名可用";
+                            v1=true;
+                        }
+                        else if (txtHint==1) {
+                            document.getElementById("font1").innerHTML="用户名已存在请重新输入";
+                            v1=false;
+                        }
+                    }
+                    else if (xmlHttp.readyState!=4){
+                        document.getElementById("font1").innerHTML="xmlHttp.readyState!=4";
+                    }
+                    else if(xmlHttp.status!=200){
+                        document.getElementById("font1").innerHTML="status:"+xmlHttp.status;
+                    }
+                };
+                xmlHttp.open("GET",url,true);
                 xmlHttp.send(null);
-
-                //document.getElementById("font1").innerHTML="ok";
-                //v1=true;
             }
         }
     }
 
-    function deal() {
-        if (xmlHttp.readyState==4){
-            var txtHint=xmlHttp.responseText;
-            if(txtHint==0){
-                document.getElementById("font1").innerHTML="用户名可用";
-                v1=true;
-            }
-            else if (txtHint==1) {
-            document.getElementById("font1").innerHTML="用户名已存在请重新输入";
-                v1=false;
-            }
-        }
-    }
     function checkAge() {
         var age=document.getElementById("age").value;
         var reg=/^\d+$/

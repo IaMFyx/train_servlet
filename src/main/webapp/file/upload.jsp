@@ -16,11 +16,12 @@
     </style>
 </head>
 <body>
-<form method="post" action="UploadServlet" enctype="multipart/form-data">
+<form method="post" action="UploadServlet" enctype="multipart/form-data" onsubmit="return confirm('确认上传？')">
     选择需要上传的文件:<br/><br/>
     <input type="file" name="uploadFile"/>
     <br/><br/>
     <input type="submit" value="上传"/>
 </form>
+<a href="../user/login.jsp">返回登录</a>
 </body>
 </html>

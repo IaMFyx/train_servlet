@@ -1,6 +1,7 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.entity.User;
+import com.ucar.training.service.MyServiceImp;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
 
-@WebServlet("/UpdateUserServlet")
+@WebServlet("/user/UpdateUserServlet")
 public class UpdateUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username=(String)request.getParameter("username");
@@ -19,23 +20,13 @@ public class UpdateUserServlet extends HttpServlet {
         String age=(String)request.getParameter("age");
         String tel=(String)request.getParameter("tel");
         String email=(String)request.getParameter("email");
-        ServletContext servletContext=request.getServletContext();
-        Set<User> users=(Set)servletContext.getAttribute("users");
 
-        for (User user:users){
-            if (user.getUsername().equals(username)){
-                users.remove(user);
-                user.setEmail(email);
-                user.setTel(tel);
-                user.setRealName(realName);
-                user.setAge(age);
-                users.add(user);
-                break;
-            }
-        }
+        MyServiceImp myServiceImp=new MyServiceImp();
+        myServiceImp.updateUser(username,realName,age,tel,email);
 
-        servletContext.setAttribute("users",users);
-        response.sendRedirect("/training_servlet/userInfo.jsp");
+        getServletContext().setAttribute("users",myServiceImp.getUsers());
+        response.getWriter().print("<script language='javascript'>alert('更新成功！');window.location='userInfo.jsp';</script>");
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

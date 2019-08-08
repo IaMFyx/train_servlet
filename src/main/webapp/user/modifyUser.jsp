@@ -12,7 +12,7 @@
     <style>
         body{
             text-align: center;
-            background-image: url("bg2.jpg");
+            background-image: url("../image/bg2.jpg");
         }
     </style>
 </head>

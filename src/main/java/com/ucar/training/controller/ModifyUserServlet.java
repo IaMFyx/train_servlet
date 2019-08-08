@@ -1,6 +1,7 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.entity.User;
+import com.ucar.training.service.MyServiceImp;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
 
-@WebServlet("/ModifyUserServlet")
+@WebServlet("/user/ModifyUserServlet")
 public class ModifyUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -19,14 +20,11 @@ public class ModifyUserServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username=(String)request.getParameter("username");
-        ServletContext servletContext=request.getServletContext();
-        Set<User> users=(Set)servletContext.getAttribute("users");
-        for (User user:users){
-            if (user.getUsername().equals(username)){
-                request.setAttribute("modifiedUser",user);
-                break;
-            }
-        }
-    servletContext.getRequestDispatcher("/modifyUser.jsp").forward(request,response);
+
+        MyServiceImp myServiceImp=new MyServiceImp();
+
+        request.setAttribute("modifiedUser",myServiceImp.findUser(username));
+
+        getServletContext().getRequestDispatcher("/user/modifyUser.jsp").forward(request,response);
     }
 }

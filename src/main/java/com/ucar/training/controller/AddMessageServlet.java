@@ -2,6 +2,7 @@ package com.ucar.training.controller;
 
 import com.ucar.training.entity.User;
 import com.ucar.training.entity.UserMessage;
+import com.ucar.training.service.MyServiceImp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,10 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
-@WebServlet("/AddMessageServlet")
+@WebServlet("/messagebord/AddMessageServlet")
 public class AddMessageServlet extends HttpServlet {
-    private static ArrayList<UserMessage> userMessages=new ArrayList<>();
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //servlet
         User user=(User)request.getSession().getAttribute("userNow");
@@ -21,18 +20,18 @@ public class AddMessageServlet extends HttpServlet {
         String messageContent=request.getParameter("messageContent");
         Calendar c=Calendar.getInstance();
         String messageTime=c.get(Calendar.YEAR)+"-"+(c.get(Calendar.MONTH)+1)+"-"+c.get(Calendar.DATE);
-        //service
         UserMessage userMessage=new UserMessage();
         userMessage.setUsername(user.getUsername());
         userMessage.setMessageTime(messageTime);
         userMessage.setMessageTitle(messageTitle);
         userMessage.setMessageContent(messageContent);
+        userMessage.setMessageID(messageContent.hashCode());
 
-        //dao
-        userMessages.add(userMessage);
-        request.getServletContext().setAttribute("userMessages",userMessages);
+        MyServiceImp myServiceImp=new MyServiceImp();
+        myServiceImp.addMessage(userMessage);
 
-        response.sendRedirect("/training_servlet/messageBord.jsp");
+        getServletContext().setAttribute("userMessages",myServiceImp.getUserMessages());
+        response.sendRedirect("/training_servlet/messagebord/messageBord.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

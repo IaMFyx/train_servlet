@@ -12,7 +12,7 @@
     <title>用户信息</title>
     <style>
         body{
-            background-image: url("bg4.jpg");
+            background-image: url("../image/bg4.jpg");
             background-size: cover;
             text-align: center;
             margin: auto;
@@ -62,7 +62,7 @@
         <td>${sessionScope.userNow.email}</td>
     </c:if>
 </table>
-<a href="messageBord.jsp">留言板</a>
+<a href="../messagebord/messageBord.jsp">留言板</a>
 <br>
 <a href="login.jsp">退出</a>
 </body>

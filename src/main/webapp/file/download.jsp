@@ -12,7 +12,7 @@
     <title>下载文件</title>
     <style>
         body{
-            background-image: url("bg4.jpg");
+            background-image: url("../image/bg4.jpg");
             background-size: cover;
             text-align: center;
             margin: auto;
@@ -26,12 +26,13 @@
         <th>文件名</th>
         <th>操作</th>
     </tr>
-<c:forEach items="${requestScope.fileNames}" var="fileName">
+<c:forEach items="${fileNames}" var="fileName">
     <tr>
         <th>${fileName}</th>
         <th><a href="DownloadServlet?name=${fileName}" rel="nofollow">下载</a></th>
     </tr>
 </c:forEach>
 </table>
+<a href="upload.jsp">再次上传</a>
 </body>
 </html>

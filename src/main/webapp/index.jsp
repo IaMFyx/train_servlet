@@ -11,11 +11,15 @@
     		window.location.href="${pageContext.request.contextPath}/servlet/LogoutServlet";
     	}
     </script>
+    <style>
+      a{
+        text-align: center;
+      }
+    </style>
   </head>
   
   <body>
 	<h1 align="center">神州优车训练营网站</h1>
-  <%
-  %>
+    <a href="user/login.jsp">登录</a>
 </body>
 </html>

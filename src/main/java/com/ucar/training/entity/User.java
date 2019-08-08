@@ -9,15 +9,18 @@ public class User {
     private String tel;
     private String email;
     private String privilege;
-//        public User(String username, String realName, String userSex, String userAge, String password, String tel, String email){
-//            this.username=username;
-//            this.realName=realName;
-//            this.userSex=userSex;
-//            this.userAge=userAge;
-//            this.password=password;
-//            this.tel=tel;
-//            this.email=email;
-//        }
+    public User(){
+
+    }
+    public User(String username, String realName, String userSex, String userAge, String password, String tel, String email){
+        this.username=username;
+        this.realName=realName;
+        this.sex=userSex;
+        this.age=userAge;
+        this.password=password;
+        this.tel=tel;
+        this.email=email;
+    }
 
     public String getPassword() {
         return password;

@@ -41,6 +41,6 @@
 <br>
 <a href="addMessage.jsp">添加留言</a>
 <br><br>
-<a href="userInfo.jsp">返回用户信息页面</a>
+<a href="../user/userInfo.jsp">返回用户信息页面</a>
 </body>
 </html>

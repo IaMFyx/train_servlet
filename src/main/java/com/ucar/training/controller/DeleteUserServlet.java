@@ -1,6 +1,7 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.entity.User;
+import com.ucar.training.service.MyServiceImp;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -11,27 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
 
-@WebServlet("/DeleteUserServlet")
+@WebServlet("/user/DeleteUserServlet")
 public class DeleteUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doGet(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username=request.getParameter("username");
-        ServletContext servletContext=request.getServletContext();
-        Set<User> users=(Set)servletContext.getAttribute("users");
-        Set<String> usernameSet=(Set)request.getServletContext().getAttribute("usernames");
-
-        for (User user:users){
-            if (user.getUsername().equals(username)){
-                users.remove(user);
-                usernameSet.remove(username);
-                break;
-            }
-        }
-        servletContext.setAttribute("users",users);
-        //response.sendRedirect("userInfo.jsp");
+        ServletContext servletContext=getServletContext();
+        MyServiceImp myServiceImp=new MyServiceImp();
+        myServiceImp.delUser(username);
+        servletContext.setAttribute("users",myServiceImp.getUsers());
+        servletContext.setAttribute("usernameSet",myServiceImp.getUsernameSet());
         response.getWriter().print("<script language='javascript'>alert('删除成功！');window.location='userInfo.jsp';</script>");
     }
 }

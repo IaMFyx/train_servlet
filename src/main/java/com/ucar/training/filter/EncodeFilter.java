@@ -1,5 +1,7 @@
 package com.ucar.training.filter;
 
+import com.ucar.training.service.MyServiceImp;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +19,8 @@ public class EncodeFilter implements Filter {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
+        MyServiceImp myServiceImp=new MyServiceImp();
+        myServiceImp.initUsers();
         chain.doFilter(request, response);
     }
 

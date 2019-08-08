@@ -11,7 +11,7 @@
     <title>用户登录</title>
     <style>
         body{
-            background-image: url("bg2.jpg");
+            background-image: url("../image/bg2.jpg");
             background-size: cover;
             text-align: center;
             margin: auto;
@@ -30,10 +30,9 @@
         <input type="reset" value="重置">
     </form>
 &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<a href="register.jsp">没有用户名？点击注册</a><br><br>
-&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<a href="upload.jsp">文件上传</a><br><br>
-&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<a href="download.jsp">文件下载</a>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<a href="../file/upload.jsp">文件上传</a><br><br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<a href="../file/download.jsp">文件下载</a>
 <script>
-
     var xmlHttp;
     var v1=false;
     function checkSub() {
@@ -56,7 +55,6 @@
         var url="LoginServlet?username="+username+"&password="+password;
 
         xmlHttp.onreadystatechange=function(){
-
             if (xmlHttp.readyState==4){
                 var txtHint=xmlHttp.responseText;
                 if (txtHint==0){
