@@ -30,11 +30,13 @@
         <font id="font2" color="red"></font><br/><br/>
         电话：&ensp;&ensp;&ensp;&ensp;<input type="text" name="tel" maxlength="11" oninput="value=value.replace(/[^\d]/g,'')"/><br/><br/>
         邮箱：&ensp;&ensp;&ensp;&ensp;<input type="email" name="email"><br/><br/>
-        爱好：&ensp;&ensp;&ensp;&ensp;撩妹<input type="checkbox" name="hobbies" value="撩妹" checked="checked" />
+        爱好：&ensp;&ensp;&ensp;&ensp;
+        撩妹<input type="checkbox" name="hobbies" value="撩妹" checked="checked" />
         写代码<input type="checkbox" name="hobbies" value="写代码" />
         篮球<input type="checkbox" name="hobbies" value="篮球" />
         足球<input type="checkbox" name="hobbies" value="足球" /><br/><br/>
-        个人签名：<textarea name="sign" >今天有点小帅……
+        个人签名：<textarea name="sign" >
+                    今天有点小帅……
              </textarea><br/><br/>
         权限：&ensp;&ensp;&ensp;&ensp;管理员<input type="radio" name="privilege" value="admin" />
         普通用户<input type="radio" name="privilege" value="user" checked="checked"/><br/><br/>

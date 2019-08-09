@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -22,9 +24,11 @@ public class RegisterServlet extends HttpServlet {
         String password=request.getParameter("password");
         String tel=request.getParameter("tel");
         String email=request.getParameter("email");
+        String[] hobbies=request.getParameterValues("hobbies");
+        String sign=request.getParameter("sign");
         String privilege=request.getParameter("privilege");
-        User user=new User();
 
+        User user=new User();
         user.setUsername(username);
         user.setRealName(realName);
         user.setAge(age);
@@ -32,6 +36,9 @@ public class RegisterServlet extends HttpServlet {
         user.setPassword(password);
         user.setTel(tel);
         user.setEmail(email);
+        user.setHobbies(hobbies);
+        user.setNotHobbies();
+        user.setSign(sign);
         user.setPrivilege(privilege);
 
         //将用户信息加入集合，模拟数据库
