@@ -1,7 +1,7 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.entity.User;
-import com.ucar.training.service.MyServiceImp;
+import com.ucar.training.service.UserServiceImp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,13 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashSet;
-import java.util.Set;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out=response.getWriter();
+
         String username=request.getParameter("username");
         String realName=request.getParameter("realName");
         String sex=request.getParameter("sex");
@@ -37,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
         user.setPrivilege(privilege);
 
         //将用户信息加入集合，模拟数据库
-        MyServiceImp myServiceImp=new MyServiceImp();
+        UserServiceImp myServiceImp=new UserServiceImp();
         myServiceImp.register(user);
 
         getServletContext().setAttribute("users",myServiceImp.getUsers());
@@ -48,7 +46,7 @@ public class RegisterServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username=request.getParameter("username");
-        MyServiceImp myServiceImp=new MyServiceImp();
+        UserServiceImp myServiceImp=new UserServiceImp();
         if (myServiceImp.inUsers(username)){
             //用户名已经存在
             response.getWriter().print(1);

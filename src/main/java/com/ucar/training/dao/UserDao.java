@@ -6,7 +6,7 @@ import com.ucar.training.entity.UserMessage;
 import java.util.ArrayList;
 import java.util.Set;
 
-public interface MyDao {
+public interface UserDao {
     //添加用户
     public void addUser(User user);
     //返回用户集合
@@ -21,12 +21,4 @@ public interface MyDao {
     public User findUser(String username);
     //删除用户
     public void delUser(User user);
-    //添加留言
-    public void addMessage(UserMessage userMessage);
-    //删除留言
-    public void delMessage(UserMessage userMessage);
-    //返回留言
-    public ArrayList<UserMessage> getUserMessages();
-    //查找留言
-    public UserMessage findMessage(int messageID);
 }

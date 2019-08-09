@@ -6,7 +6,7 @@ import com.ucar.training.entity.UserMessage;
 import java.util.ArrayList;
 import java.util.Set;
 
-public interface MyService {
+public interface UserService {
     //初始用户集合
     public void initUsers();
     //用户注册
@@ -27,10 +27,4 @@ public interface MyService {
     public Set<String> getUsernameSet();
     //返回当前登录的用户
     public User getUserNow();
-    //添加留言
-    public void addMessage(UserMessage userMessage);
-    //删除留言
-    public void delMessage(int messageID);
-    //返回留言板
-    public ArrayList<UserMessage> getUserMessages();
 }

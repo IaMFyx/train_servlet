@@ -1,31 +1,29 @@
 package com.ucar.training.service;
 
-import com.ucar.training.dao.MyDaoImp;
+import com.ucar.training.dao.UserDaoImp;
 import com.ucar.training.entity.User;
 import com.ucar.training.entity.UserMessage;
-
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
-public class MyServiceImp implements MyService {
+public class UserServiceImp implements UserService {
     private User userNow;
     @Override
     public void initUsers() {
-        MyDaoImp myDaoImp=new MyDaoImp();
+        UserDaoImp myDaoImp=new UserDaoImp();
         myDaoImp.initUsers();
     }
 
     @Override
     public void register(User user) {
-        MyDaoImp myDaoImp=new MyDaoImp();
+        UserDaoImp myDaoImp=new UserDaoImp();
         myDaoImp.addUser(user);
     }
 
     @Override
     public int login(String username, String password) {
         int var=2;
-        MyDaoImp myDaoImp=new MyDaoImp();
+        UserDaoImp myDaoImp=new UserDaoImp();
         if (myDaoImp.inquireUser(username)){
             User user=myDaoImp.findUser(username);
             if (user.getUsername().equals(username)){
@@ -45,14 +43,14 @@ public class MyServiceImp implements MyService {
 
     @Override
     public void delUser(String username) {
-        MyDaoImp myDaoImp=new MyDaoImp();
+        UserDaoImp myDaoImp=new UserDaoImp();
         User user=myDaoImp.findUser(username);
         myDaoImp.delUser(user);
     }
 
     @Override
     public void updateUser(String username,String realName,String age,String tel,String email) {
-        MyDaoImp myDaoImp=new MyDaoImp();
+        UserDaoImp myDaoImp=new UserDaoImp();
         User user=myDaoImp.findUser(username);
         this.delUser(username);
         user.setRealName(realName);
@@ -61,47 +59,33 @@ public class MyServiceImp implements MyService {
         user.setEmail(email);
         myDaoImp.addUser(user);
     }
+
+    @Override
     public boolean inUsers(String username){
-        MyDaoImp myDaoImp=new MyDaoImp();
+        UserDaoImp myDaoImp=new UserDaoImp();
         return myDaoImp.inquireUser(username);
     }
+
     @Override
     public User findUser(String username) {
-        MyDaoImp myDaoImp=new MyDaoImp();
+        UserDaoImp myDaoImp=new UserDaoImp();
         return myDaoImp.findUser(username);
     }
 
     @Override
     public Set<String> getUsernameSet() {
-        MyDaoImp myDaoImp=new MyDaoImp();
+        UserDaoImp myDaoImp=new UserDaoImp();
         return myDaoImp.getUsernameSet();
     }
 
     @Override
     public Set<User> getUsers() {
-        MyDaoImp myDaoImp=new MyDaoImp();
+        UserDaoImp myDaoImp=new UserDaoImp();
         return myDaoImp.getUsers();
     }
+
     @Override
     public User getUserNow() {
         return userNow;
-    }
-
-    @Override
-    public void addMessage(UserMessage userMessage) {
-        MyDaoImp myDaoImp=new MyDaoImp();
-        myDaoImp.addMessage(userMessage);
-    }
-
-    @Override
-    public void delMessage(int messageID) {
-        MyDaoImp myDaoImp=new MyDaoImp();
-        myDaoImp.delMessage(myDaoImp.findMessage(messageID));
-    }
-
-    @Override
-    public ArrayList<UserMessage> getUserMessages() {
-        MyDaoImp myDaoImp=new MyDaoImp();
-        return myDaoImp.getUserMessages();
     }
 }

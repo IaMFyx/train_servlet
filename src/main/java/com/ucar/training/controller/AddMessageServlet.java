@@ -2,8 +2,7 @@ package com.ucar.training.controller;
 
 import com.ucar.training.entity.User;
 import com.ucar.training.entity.UserMessage;
-import com.ucar.training.service.MyServiceImp;
-
+import com.ucar.training.service.MessageServiceImp;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
+
 @WebServlet("/messagebord/AddMessageServlet")
 public class AddMessageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,10 +27,10 @@ public class AddMessageServlet extends HttpServlet {
         userMessage.setMessageContent(messageContent);
         userMessage.setMessageID(messageContent.hashCode());
 
-        MyServiceImp myServiceImp=new MyServiceImp();
-        myServiceImp.addMessage(userMessage);
+        MessageServiceImp messageServiceImp=new MessageServiceImp();
+        messageServiceImp.addMessage(userMessage);
 
-        getServletContext().setAttribute("userMessages",myServiceImp.getUserMessages());
+        getServletContext().setAttribute("userMessages",messageServiceImp.getUserMessages());
         response.sendRedirect("/training_servlet/messagebord/messageBord.jsp");
     }
 

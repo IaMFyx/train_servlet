@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class MyDaoImp implements MyDao {
+public class UserDaoImp implements UserDao {
     private static Set<User> users=new HashSet<User>();
     private static Set<String> usernameSet=new HashSet<String>();
     private static ArrayList<UserMessage> userMessages=new ArrayList<>();
@@ -64,30 +64,4 @@ public class MyDaoImp implements MyDao {
         return usernameSet;
     }
 
-    @Override
-    public void addMessage(UserMessage userMessage) {
-        userMessages.add(userMessage);
-    }
-
-    @Override
-    public void delMessage(UserMessage userMessage) {
-        userMessages.remove(userMessage);
-    }
-
-    @Override
-    public ArrayList<UserMessage> getUserMessages() {
-        return userMessages;
-    }
-
-    @Override
-    public UserMessage findMessage(int messageID) {
-        UserMessage userMessage=new UserMessage();
-        for (UserMessage userMessage1:userMessages){
-            if (userMessage1.getMessageID()==messageID){
-                userMessage=userMessage1;
-                break;
-            }
-        }
-        return userMessage;
-    }
 }
