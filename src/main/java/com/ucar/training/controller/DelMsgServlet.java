@@ -21,7 +21,7 @@ public class DelMsgServlet extends HttpServlet {
         MessageServiceImp messageServiceImp=new MessageServiceImp();
         messageServiceImp.delMessage(Integer.parseInt(messageID));
 
-        getServletContext().setAttribute("userMessages",messageServiceImp.getUserMessages());
+        request.getSession().setAttribute("userMessages",messageServiceImp.getUserMessages());
         response.getWriter().print("<script language='javascript'>alert('删除成功！');window.location='messageBord.jsp';</script>");
     }
 }

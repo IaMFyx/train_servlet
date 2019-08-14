@@ -2,18 +2,11 @@ package com.ucar.training.service;
 
 import com.ucar.training.dao.UserDaoImp;
 import com.ucar.training.entity.User;
-import com.ucar.training.entity.UserMessage;
 import java.util.ArrayList;
-import java.util.Set;
+
 
 public class UserServiceImp implements UserService {
     private User userNow;
-    @Override
-    public void initUsers() {
-        UserDaoImp myDaoImp=new UserDaoImp();
-        myDaoImp.initUsers();
-    }
-
     @Override
     public void register(User user) {
         UserDaoImp myDaoImp=new UserDaoImp();
@@ -44,20 +37,13 @@ public class UserServiceImp implements UserService {
     @Override
     public void delUser(String username) {
         UserDaoImp myDaoImp=new UserDaoImp();
-        User user=myDaoImp.findUser(username);
-        myDaoImp.delUser(user);
+        myDaoImp.delUser(username);
     }
 
     @Override
-    public void updateUser(String username,String realName,String age,String tel,String email) {
+    public void updateUser(User user) {
         UserDaoImp myDaoImp=new UserDaoImp();
-        User user=myDaoImp.findUser(username);
-        this.delUser(username);
-        user.setRealName(realName);
-        user.setAge(age);
-        user.setTel(tel);
-        user.setEmail(email);
-        myDaoImp.addUser(user);
+        myDaoImp.modifyUser(user);
     }
 
     @Override
@@ -73,15 +59,9 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public Set<String> getUsernameSet() {
+    public ArrayList<User> getUsers() {
         UserDaoImp myDaoImp=new UserDaoImp();
-        return myDaoImp.getUsernameSet();
-    }
-
-    @Override
-    public Set<User> getUsers() {
-        UserDaoImp myDaoImp=new UserDaoImp();
-        return myDaoImp.getUsers();
+        return myDaoImp.findAllUser();
     }
 
     @Override

@@ -19,15 +19,11 @@ public class DeleteUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username=request.getParameter("username");
 
-        ServletContext servletContext=getServletContext();
-
         UserServiceImp myServiceImp=new UserServiceImp();
 
         myServiceImp.delUser(username);
 
-        servletContext.setAttribute("users",myServiceImp.getUsers());
-
-        servletContext.setAttribute("usernameSet",myServiceImp.getUsernameSet());
+        request.getSession().setAttribute("users",myServiceImp.getUsers());
 
         response.getWriter().print("<script language='javascript'>alert('删除成功！');window.location='userInfo.jsp';</script>");
     }

@@ -35,8 +35,7 @@
         写代码<input type="checkbox" name="hobbies" value="写代码" />
         篮球<input type="checkbox" name="hobbies" value="篮球" />
         足球<input type="checkbox" name="hobbies" value="足球" /><br/><br/>
-        个人签名：<textarea name="sign" >
-                    今天有点小帅……
+        个人签名：<textarea name="sign" >今天有点小帅……
              </textarea><br/><br/>
         权限：&ensp;&ensp;&ensp;&ensp;管理员<input type="radio" name="privilege" value="admin" />
         普通用户<input type="radio" name="privilege" value="user" checked="checked"/><br/><br/>

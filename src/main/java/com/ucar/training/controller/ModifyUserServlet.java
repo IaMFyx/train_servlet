@@ -21,7 +21,6 @@ public class ModifyUserServlet extends HttpServlet {
         UserServiceImp myServiceImp=new UserServiceImp();
 
         request.setAttribute("modifiedUser",myServiceImp.findUser(username));
-
         getServletContext().getRequestDispatcher("/user/modifyUser.jsp").forward(request,response);
     }
 }

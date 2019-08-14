@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.*;
 
 @WebServlet("/messagebord/AddMessageServlet")
 public class AddMessageServlet extends HttpServlet {
@@ -18,19 +17,16 @@ public class AddMessageServlet extends HttpServlet {
         User user=(User)request.getSession().getAttribute("userNow");
         String messageTitle=request.getParameter("messageTitle");
         String messageContent=request.getParameter("messageContent");
-        Calendar c=Calendar.getInstance();
-        String messageTime=c.get(Calendar.YEAR)+"-"+(c.get(Calendar.MONTH)+1)+"-"+c.get(Calendar.DATE);
         UserMessage userMessage=new UserMessage();
         userMessage.setUsername(user.getUsername());
-        userMessage.setMessageTime(messageTime);
         userMessage.setMessageTitle(messageTitle);
         userMessage.setMessageContent(messageContent);
-        userMessage.setMessageID(messageContent.hashCode());
+
 
         MessageServiceImp messageServiceImp=new MessageServiceImp();
         messageServiceImp.addMessage(userMessage);
 
-        getServletContext().setAttribute("userMessages",messageServiceImp.getUserMessages());
+        request.getSession().setAttribute("userMessages",messageServiceImp.getUserMessages());
         response.sendRedirect("/training_servlet/messagebord/messageBord.jsp");
     }
 

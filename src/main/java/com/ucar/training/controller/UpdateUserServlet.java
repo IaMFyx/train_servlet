@@ -1,5 +1,6 @@
 package com.ucar.training.controller;
 
+import com.ucar.training.entity.User;
 import com.ucar.training.service.UserServiceImp;
 
 import javax.servlet.ServletException;
@@ -12,16 +13,45 @@ import java.io.IOException;
 @WebServlet("/user/UpdateUserServlet")
 public class UpdateUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username=(String)request.getParameter("username");
-        String realName=(String)request.getParameter("realName");
-        String age=(String)request.getParameter("age");
-        String tel=(String)request.getParameter("tel");
-        String email=(String)request.getParameter("email");
+        String username=request.getParameter("username");
+        String realName=request.getParameter("realName");
+        String sex=request.getParameter("sex");
+        String age=request.getParameter("age");
+        String password=request.getParameter("password");
+        String tel=request.getParameter("tel");
+        String email=request.getParameter("email");
+        String[] hobbiesArr=request.getParameterValues("hobbies");
+        StringBuffer hobbies=new StringBuffer();
+        if (hobbiesArr==null){
+            hobbies.append("无");
+        }
+        else {
+            for (int i = 0; i <hobbiesArr.length ; i++) {
+                hobbies.append(hobbiesArr[i]+",");
+            }
+            hobbies.delete(hobbies.length()-1,hobbies.length());
+        }
+
+        String sign=request.getParameter("sign");
+        String privilege=request.getParameter("privilege");
+
+        User user=new User();
+        user.setUsername(username);
+        user.setRealName(realName);
+        user.setAge(age);
+        user.setSex(sex);
+        user.setPassword(password);
+        user.setTel(tel);
+        user.setEmail(email);
+        user.setHobbies(hobbies.toString());
+        user.setHobbyList();
+        user.setSign(sign);
+        user.setPrivilege(privilege);
 
         UserServiceImp myServiceImp=new UserServiceImp();
-        myServiceImp.updateUser(username,realName,age,tel,email);
+        myServiceImp.updateUser(user);
 
-        getServletContext().setAttribute("users",myServiceImp.getUsers());
+        request.getSession().setAttribute("users",myServiceImp.getUsers());
         response.getWriter().print("<script language='javascript'>alert('更新成功！');window.location='userInfo.jsp';</script>");
     }
 

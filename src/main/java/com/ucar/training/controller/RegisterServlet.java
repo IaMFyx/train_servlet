@@ -2,16 +2,12 @@ package com.ucar.training.controller;
 
 import com.ucar.training.entity.User;
 import com.ucar.training.service.UserServiceImp;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -24,7 +20,18 @@ public class RegisterServlet extends HttpServlet {
         String password=request.getParameter("password");
         String tel=request.getParameter("tel");
         String email=request.getParameter("email");
-        String[] hobbies=request.getParameterValues("hobbies");
+        String[] hobbiesArr=request.getParameterValues("hobbies");
+        StringBuffer hobbies=new StringBuffer();
+        if (hobbiesArr==null){
+            hobbies.append("无");
+        }
+        else {
+            for (int i = 0; i <hobbiesArr.length ; i++) {
+                hobbies.append(hobbiesArr[i]+",");
+            }
+            hobbies.delete(hobbies.length()-1,hobbies.length());
+        }
+
         String sign=request.getParameter("sign");
         String privilege=request.getParameter("privilege");
 
@@ -36,8 +43,8 @@ public class RegisterServlet extends HttpServlet {
         user.setPassword(password);
         user.setTel(tel);
         user.setEmail(email);
-        user.setHobbies(hobbies);
-        user.setNotHobbies();
+        user.setHobbies(hobbies.toString());
+        user.setHobbyList();
         user.setSign(sign);
         user.setPrivilege(privilege);
 
@@ -45,8 +52,8 @@ public class RegisterServlet extends HttpServlet {
         UserServiceImp myServiceImp=new UserServiceImp();
         myServiceImp.register(user);
 
-        getServletContext().setAttribute("users",myServiceImp.getUsers());
-        getServletContext().setAttribute("usernames",myServiceImp.getUsernameSet());
+        //request.getSession().setAttribute("users",myServiceImp.getUsers());
+
         //在register.jsp中提示注册成功
         response.getWriter().print("<script language='javascript'>alert('注册成功！');window.location='user/register.jsp';</script>");
     }

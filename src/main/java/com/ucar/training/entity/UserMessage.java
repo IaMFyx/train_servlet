@@ -1,6 +1,8 @@
 package com.ucar.training.entity;
 
-public class UserMessage {
+import java.io.Serializable;
+
+public class UserMessage implements Serializable {
     private String username;
     private String messageTime;
     private String messageTitle;

@@ -5,7 +5,7 @@
   Time: 15:47
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" import="com.ucar.training.entity.User"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -31,6 +31,8 @@
         <th>年龄</th>
         <th>电话</th>
         <th>邮箱</th>
+        <th>爱好</th>
+        <th>个人签名</th>
     </tr>
     <c:if test="${sessionScope.userNow.privilege==\"admin\"}">
     <c:forEach items="${users}" var="user">
@@ -43,6 +45,8 @@
             <td>${user.age}</td>
             <td>${user.tel}</td>
             <td>${user.email}</td>
+            <td>${user.hobbies}</td>
+            <td>${user.sign}</td>
             <td><a href="ModifyUserServlet?username=${user.username}">修改</a>
                 <a href="DeleteUserServlet?username=${user.username}" onclick="return confirm('是否删除？')">删除</a></td>
         </tr>
@@ -60,6 +64,8 @@
         <td>${sessionScope.userNow.age}</td>
         <td>${sessionScope.userNow.tel}</td>
         <td>${sessionScope.userNow.email}</td>
+        <td>${sessionScope.userNow.hobbies}</td>
+        <td>${sessionScope.userNow.sign}</td>
     </c:if>
 </table>
 <a href="../messagebord/messageBord.jsp">留言板</a>

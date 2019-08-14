@@ -1,6 +1,9 @@
 package com.ucar.training.entity;
 
-public class User {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class User implements Serializable {
     private String username;
     private String realName;
     private String sex;
@@ -9,6 +12,10 @@ public class User {
     private String tel;
     private String email;
     private String privilege;
+    private String hobbies;
+    private ArrayList<String> hobbyList=new ArrayList<>(4);
+    private String sign;
+
     public User(){
 
     }
@@ -82,4 +89,38 @@ public class User {
     public void setPrivilege(String privilege) {
         this.privilege = privilege;
     }
+
+    public String getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(String hobbies) {
+        if (hobbies==null){
+            this.hobbies="无";
+        }
+        else {
+            this.hobbies = hobbies;
+        }
+    }
+
+    public ArrayList<String> getHobbyList() {
+        return hobbyList;
+    }
+
+    public void setHobbyList() {
+         String[] hobbiesArr=this.hobbies.split(",");
+        for (int i = 0; i <hobbiesArr.length ; i++) {
+            hobbyList.add(hobbiesArr[i]);
+        }
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
+
+
 }

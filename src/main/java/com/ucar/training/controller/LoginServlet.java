@@ -25,6 +25,7 @@ public class LoginServlet extends HttpServlet {
         if (val==0){
             //密码正确
             request.getSession().setAttribute("userNow",myServiceImp.getUserNow());
+            request.getSession().setAttribute("users",myServiceImp.getUsers());
             response.getWriter().print(0);
         }
         else if(val==1)
