@@ -10,7 +10,7 @@ public class UserDaoImp implements UserDao {
     private DBUtil dbUtil=new DBUtil();
     @Override
     public void addUser(User user) {
-        String sql="INSERT INTO users(用户名,密码,姓名,性别,年龄,电话,邮箱,权限,爱好,个性签名) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String sql="INSERT INTO users(username,password,realName,sex,age,tel,email,privilege,hobbies,sign) VALUES(?,?,?,?,?,?,?,?,?,?)";
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         try {
@@ -58,7 +58,7 @@ public class UserDaoImp implements UserDao {
     }
     @Override
     public boolean inquireUser(String username) {
-        String sql="SELECT 用户名 FROM users WHERE 用户名=?";
+        String sql="SELECT username FROM users WHERE username=?";
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         ResultSet resultSet=null;
@@ -85,7 +85,7 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public User findUser(String username) {
-        String sql="SELECT * FROM users WHERE 用户名=?";
+        String sql="SELECT * FROM users WHERE username=?";
         User user=new User();
         Connection connection=null;
         PreparedStatement preparedStatement=null;
@@ -96,17 +96,17 @@ public class UserDaoImp implements UserDao {
             preparedStatement.setString(1,username);
             resultSet=preparedStatement.executeQuery();
             if (resultSet.next()){
-                user.setUsername(resultSet.getString("用户名"));
-                user.setRealName(resultSet.getString("姓名"));
-                user.setPassword(resultSet.getString("密码"));
-                user.setSex(resultSet.getString("性别"));
-                user.setAge(resultSet.getString("年龄"));
-                user.setTel(resultSet.getString("电话"));
-                user.setEmail(resultSet.getString("邮箱"));
-                user.setPrivilege(resultSet.getString("权限"));
-                user.setHobbies(resultSet.getString("爱好"));
+                user.setUsername(resultSet.getString("username"));
+                user.setRealName(resultSet.getString("realName"));
+                user.setPassword(resultSet.getString("password"));
+                user.setSex(resultSet.getString("sex"));
+                user.setAge(resultSet.getString("age"));
+                user.setTel(resultSet.getString("tel"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPrivilege(resultSet.getString("privilege"));
+                user.setHobbies(resultSet.getString("hobbies"));
                 user.setHobbyList();
-                user.setSign(resultSet.getString("个性签名"));
+                user.setSign(resultSet.getString("sign"));
             }
 
         }
@@ -134,17 +134,17 @@ public class UserDaoImp implements UserDao {
             resultSet=preparedStatement.executeQuery();
             while (resultSet.next()){
                 User user=new User();
-                user.setUsername(resultSet.getString("用户名"));
-                user.setRealName(resultSet.getString("姓名"));
-                user.setPassword(resultSet.getString("密码"));
-                user.setSex(resultSet.getString("性别"));
-                user.setAge(resultSet.getString("年龄"));
-                user.setTel(resultSet.getString("电话"));
-                user.setEmail(resultSet.getString("邮箱"));
-                user.setPrivilege(resultSet.getString("权限"));
-                user.setHobbies(resultSet.getString("爱好"));
+                user.setUsername(resultSet.getString("username"));
+                user.setRealName(resultSet.getString("realName"));
+                user.setPassword(resultSet.getString("password"));
+                user.setSex(resultSet.getString("sex"));
+                user.setAge(resultSet.getString("age"));
+                user.setTel(resultSet.getString("tel"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPrivilege(resultSet.getString("privilege"));
+                user.setHobbies(resultSet.getString("hobbies"));
                 user.setHobbyList();
-                user.setSign(resultSet.getString("个性签名"));
+                user.setSign(resultSet.getString("sign"));
                 users.add(user);
             }
         }
@@ -160,7 +160,7 @@ public class UserDaoImp implements UserDao {
     }
     @Override
     public void modifyUser(User user){
-        String sql="UPDATE users SET 姓名=?,性别=?,年龄=?,电话=?,邮箱=?,爱好=?,个性签名=?WHERE 用户名=?";
+        String sql="UPDATE users SET realName=?,sex=?,age=?,tel=?,email=?,hobby=?,sign=?WHERE username=?";
 
         Connection connection=null;
         PreparedStatement preparedStatement=null;
