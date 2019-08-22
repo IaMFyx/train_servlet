@@ -1,11 +1,12 @@
-package com.ucar.training.service;
+package com.ucar.training.service.impl;
 
-import com.ucar.training.dao.MessageDaoImp;
+import com.ucar.training.dao.imp.MessageDaoImp;
 import com.ucar.training.entity.UserMessage;
+import com.ucar.training.service.MessageService;
 
 import java.util.ArrayList;
 
-public class MessageServiceImp implements MessageService{
+public class MessageServiceImp implements MessageService {
     @Override
     public void addMessage(UserMessage userMessage) {
         MessageDaoImp messageDaoImp=new MessageDaoImp();
@@ -21,6 +22,6 @@ public class MessageServiceImp implements MessageService{
     @Override
     public ArrayList<UserMessage> getUserMessages() {
         MessageDaoImp messageDaoImp=new MessageDaoImp();
-        return messageDaoImp.findAllMessages();
+        return messageDaoImp.selectAllMessages();
     }
 }

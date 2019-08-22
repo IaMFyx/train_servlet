@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucar.training.dao.RoleDao">
+    <resultMap id="RoleMap" type="com.ucar.training.entity.TRole">
+        <id column="rid" property="rid"/>
+        <result column="role_name" property="roleName"/>
+        <collection property="menusList" ofType="com.ucar.training.entity.TMenu">
+            <id column="mid" property="mid"/>
+            <result column="menu_name" property="menuName"/>
+        </collection>
+    </resultMap>
+
+    <insert id="insertRole" parameterType="STRING">
+        insert into t_role(role_name) values (#{roleName});
+    </insert>
+
+    <insert id="insertRoleMenu">
+        insert into role_menu (rid, mid) values (#{roleID},#{menuID});
+    </insert>
+
+    <select id="selectAllRole" resultMap="RoleMap">
+        SELECT t_role.rid,role_name,t_menu.mid,menu_name
+        FROM t_role,t_menu,role_menu
+        WHERE t_role.rid=role_menu.rid AND role_menu.mid=t_menu.mid
+    </select>
+
+    <select id="selectRoleByID" resultMap="RoleMap" parameterType="INTEGER">
+        SELECT t_role.rid,role_name,t_menu.mid,menu_name
+        FROM t_role,t_menu,role_menu
+        WHERE t_role.rid=#{roleID} AND t_role.rid=role_menu.rid AND role_menu.mid=t_menu.mid
+    </select>
+
+    <select id="selectRoleIDByName" resultType="INTEGER" parameterType="STRING">
+        select rid from t_role where role_name=#{roleName}
+    </select>
+
+    <delete id="delRole" parameterType="INTEGER">
+        delete from t_role where t_role.rid=#{roleID};
+        delete from role_menu where role_menu.rid=#{roleID};
+    </delete>
+
+    <update id="updateRole">
+        update role_menu set mid=#{menuID}
+        where
+    </update>
+</mapper>

@@ -12,14 +12,30 @@
     <title>用户信息</title>
     <style>
         body{
-            background-image: url("../image/bg4.jpg");
+            background-image: url("../image/bg2.jpg");
             background-size: cover;
-            text-align: center;
             margin: auto;
+            text-align: center;
+        }
+        .menu{
+            padding: 13px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -700px;
+            margin-top: -300px;
         }
     </style>
 </head>
 <body>
+<div class="menu">
+    <c:forEach items="${sessionScope.userMenu}" var="each">
+        <a href="${each.url}">${each.menuName}</a>
+        <br><br>
+    </c:forEach>
+    <a href="login.jsp">退出</a>
+</div>
+<div class="table">
 <h2>${sessionScope.userNow.username},你好！</h2>
 <h3>用户信息表</h3>
 <table align="center" border="1">
@@ -34,9 +50,9 @@
         <th>爱好</th>
         <th>个人签名</th>
     </tr>
-    <c:if test="${sessionScope.userNow.privilege==\"admin\"}">
+    <c:if test="${sessionScope.userNow.role==1}">
     <c:forEach items="${users}" var="user">
-        <c:if test="${user.privilege==\"user\"}">
+        <c:if test="${user.role==2}">
         <tr align="center">
             <td>${user.username}</td>
             <td>${user.password}</td>
@@ -52,24 +68,22 @@
         </tr>
         </c:if>
     </c:forEach>
-        <a href="register.jsp">增加用户</a>
+<%--        <a href="register.jsp">增加用户</a>--%>
     </c:if>
-    <c:if test="${sessionScope.userNow.privilege==\"user\"}">
+    <c:if test="${sessionScope.userNow.role==2}">
         <tr align="center">
+            <td>${sessionScope.userNow.username}</td>
+            <td>${sessionScope.userNow.password}</td>
+            <td>${sessionScope.userNow.realName}</td>
+            <td>${sessionScope.userNow.sex}</td>
+            <td>${sessionScope.userNow.age}</td>
+            <td>${sessionScope.userNow.tel}</td>
+            <td>${sessionScope.userNow.email}</td>
+            <td>${sessionScope.userNow.hobbies}</td>
+            <td>${sessionScope.userNow.sign}</td>
         </tr>
-        <td>${sessionScope.userNow.username}</td>
-        <td>${sessionScope.userNow.password}</td>
-        <td>${sessionScope.userNow.realName}</td>
-        <td>${sessionScope.userNow.sex}</td>
-        <td>${sessionScope.userNow.age}</td>
-        <td>${sessionScope.userNow.tel}</td>
-        <td>${sessionScope.userNow.email}</td>
-        <td>${sessionScope.userNow.hobbies}</td>
-        <td>${sessionScope.userNow.sign}</td>
     </c:if>
 </table>
-<a href="../messagebord/messageBord.jsp">留言板</a>
-<br>
-<a href="login.jsp">退出</a>
+</div>
 </body>
 </html>

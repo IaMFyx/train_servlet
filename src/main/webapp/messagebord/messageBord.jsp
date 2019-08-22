@@ -12,12 +12,29 @@
     <title>留言板</title>
     <style>
         body{
-            text-align: center;
+            background-image: url("../image/bg4.jpg");
+            background-size: cover;
             margin: auto;
+            text-align: center;
+        }
+        .menu{
+            padding: 13px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -500px;
+            margin-top: -300px;
         }
     </style>
 </head>
 <body>
+<div class="menu">
+    <a href="addMessage.jsp">添加留言</a>
+    <br><br>
+    <a href="../user/userInfo.jsp">个人信息</a>
+    <br><br>
+    <a href="../user/login.jsp">退出</a>
+</div>
 <h2>留言板</h2>
 <table border="1" align="center">
     <tr>
@@ -26,21 +43,18 @@
         <th>留言标题</th>
         <th>留言内容</th>
     </tr>
-    <c:forEach items="${userMessages}" var="userMessage">
+    <c:forEach items="${sessionScope.userMessages}" var="userMessage">
         <tr>
             <td>${userMessage.username}</td>
             <td>${userMessage.messageTime}</td>
             <td>${userMessage.messageTitle}</td>
             <td>${userMessage.messageContent}</td>
-            <c:if test="${sessionScope.userNow.privilege==\"admin\"}">
+            <c:if test="${sessionScope.userNow.role==1}">
                 <td><a href="DelMsgServlet?messageID=${userMessage.messageID}" onclick="return confirm('是否删除？')">删除</a></td>
             </c:if>
         </tr>
     </c:forEach>
 </table>
 <br>
-<a href="addMessage.jsp">添加留言</a>
-<br><br>
-<a href="../user/userInfo.jsp">返回用户信息页面</a>
 </body>
 </html>

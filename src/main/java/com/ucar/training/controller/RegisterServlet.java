@@ -1,7 +1,7 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.entity.User;
-import com.ucar.training.service.UserServiceImp;
+import com.ucar.training.service.impl.UserServiceImp;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
         }
 
         String sign=request.getParameter("sign");
-        String privilege=request.getParameter("privilege");
+        String privilege=request.getParameter("role");
 
         User user=new User();
         user.setUsername(username);
@@ -44,15 +44,11 @@ public class RegisterServlet extends HttpServlet {
         user.setTel(tel);
         user.setEmail(email);
         user.setHobbies(hobbies.toString());
-        user.setHobbyList();
         user.setSign(sign);
-        user.setPrivilege(privilege);
+        user.setRole(Integer.parseInt(privilege));
 
-        //将用户信息加入集合，模拟数据库
         UserServiceImp myServiceImp=new UserServiceImp();
         myServiceImp.register(user);
-
-        //request.getSession().setAttribute("users",myServiceImp.getUsers());
 
         //在register.jsp中提示注册成功
         response.getWriter().print("<script language='javascript'>alert('注册成功！');window.location='user/register.jsp';</script>");

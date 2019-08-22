@@ -1,9 +1,10 @@
 package com.ucar.training.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class User implements Serializable {
+
+    private  int id;
     private String username;
     private String realName;
     private String sex;
@@ -11,22 +12,16 @@ public class User implements Serializable {
     private String password;
     private String tel;
     private String email;
-    private String privilege;
+    private int role;
     private String hobbies;
-    private ArrayList<String> hobbyList=new ArrayList<>(4);
     private String sign;
 
-    public User(){
-
+    public int getId() {
+        return id;
     }
-    public User(String username, String realName, String userSex, String userAge, String password, String tel, String email){
-        this.username=username;
-        this.realName=realName;
-        this.sex=userSex;
-        this.age=userAge;
-        this.password=password;
-        this.tel=tel;
-        this.email=email;
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPassword() {
@@ -52,6 +47,7 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getTel() {
         return tel;
     }
@@ -67,6 +63,7 @@ public class User implements Serializable {
     public String getUsername() {
         return username;
     }
+
     public void setRealName(String realName) {
         this.realName = realName;
     }
@@ -74,6 +71,7 @@ public class User implements Serializable {
     public String getRealName() {
         return realName;
     }
+
     public String getSex() {
         return sex;
     }
@@ -82,14 +80,13 @@ public class User implements Serializable {
         return email;
     }
 
-    public String getPrivilege() {
-        return privilege;
+    public int getRole() {
+        return role;
     }
 
-    public void setPrivilege(String privilege) {
-        this.privilege = privilege;
+    public void setRole(int role) {
+        this.role = role;
     }
-
     public String getHobbies() {
         return hobbies;
     }
@@ -100,17 +97,6 @@ public class User implements Serializable {
         }
         else {
             this.hobbies = hobbies;
-        }
-    }
-
-    public ArrayList<String> getHobbyList() {
-        return hobbyList;
-    }
-
-    public void setHobbyList() {
-         String[] hobbiesArr=this.hobbies.split(",");
-        for (int i = 0; i <hobbiesArr.length ; i++) {
-            hobbyList.add(hobbiesArr[i]);
         }
     }
 

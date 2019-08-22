@@ -1,7 +1,7 @@
 package com.ucar.training.controller;
 
 import com.ucar.training.entity.User;
-import com.ucar.training.service.UserServiceImp;
+import com.ucar.training.service.impl.UserServiceImp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +33,7 @@ public class UpdateUserServlet extends HttpServlet {
         }
 
         String sign=request.getParameter("sign");
-        String privilege=request.getParameter("privilege");
+        String privilege=request.getParameter("role");
 
         User user=new User();
         user.setUsername(username);
@@ -44,9 +44,8 @@ public class UpdateUserServlet extends HttpServlet {
         user.setTel(tel);
         user.setEmail(email);
         user.setHobbies(hobbies.toString());
-        user.setHobbyList();
         user.setSign(sign);
-        user.setPrivilege(privilege);
+        user.setRole(Integer.parseInt(privilege));
 
         UserServiceImp myServiceImp=new UserServiceImp();
         myServiceImp.updateUser(user);

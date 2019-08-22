@@ -33,14 +33,16 @@
     姓名：&ensp;&ensp;&ensp;&ensp;<input name="realName" type="text" value="${requestScope.modifiedUser.realName}" /><br/><br/>
     年龄：&ensp;&ensp;&ensp;&ensp;<input type="text" name="age" maxlength="3" value="${requestScope.modifiedUser.age}"/><br/><br/>
     爱好：&ensp;&ensp;&ensp;&ensp;
-    撩妹<input type="checkbox" name="hobbies" value="撩妹" ${requestScope.modifiedUser.hobbyList.contains("撩妹") eq true?'checked':''} />
-    写代码<input type="checkbox" name="hobbies" value="写代码" ${requestScope.modifiedUser.hobbyList.contains("写代码") eq true?'checked':''}/>
-    篮球<input type="checkbox" name="hobbies" value="篮球" ${requestScope.modifiedUser.hobbyList.contains("篮球") eq true?'checked':''}/>
-    足球<input type="checkbox" name="hobbies" value="足球" ${requestScope.modifiedUser.hobbyList.contains("足球") eq true?'checked':''}/><br/><br/>
+    撩妹<input type="checkbox" name="hobbies" value="撩妹" ${requestScope.modifiedUser.hobbies.contains("撩妹") eq true ? 'checked':''} />
+    写代码<input type="checkbox" name="hobbies" value="写代码" ${requestScope.modifiedUser.hobbies.contains("写代码") eq true ? 'checked':''}/>
+    篮球<input type="checkbox" name="hobbies" value="篮球" ${requestScope.modifiedUser.hobbies.contains("篮球") eq true ? 'checked':''}/>
+    足球<input type="checkbox" name="hobbies" value="足球" ${requestScope.modifiedUser.hobbies.contains("足球") eq true ? 'checked':''}/><br/><br/>
     电话：&ensp;&ensp;&ensp;&ensp;<input type="text" name="tel" maxlength="11" oninput="value=value.replace(/[^\d]/g,'')" value="${requestScope.modifiedUser.tel}"/><br/><br/>
     邮箱：&ensp;&ensp;&ensp;&ensp;<input type="email" name="email" value="${requestScope.modifiedUser.email}"><br/><br/>
     个人签名：<textarea name="sign" >${requestScope.modifiedUser.sign}
              </textarea><br/><br/>
+    权限：&ensp;&ensp;&ensp;&ensp;管理员<input type="radio" name="privilege" value="1" ${requestScope.modifiedUser.role==1 ?'checked':''}/>
+    普通用户<input type="radio" name="privilege" value="2" ${requestScope.modifiedUser.role==2 ?'checked':''}/><br/><br/>
     &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
     <input type="submit" name="submit" value="更新用户信息"  />
 

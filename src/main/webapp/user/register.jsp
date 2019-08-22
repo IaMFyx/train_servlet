@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 86751
@@ -37,8 +38,13 @@
         足球<input type="checkbox" name="hobbies" value="足球" /><br/><br/>
         个人签名：<textarea name="sign" >今天有点小帅……
              </textarea><br/><br/>
-        权限：&ensp;&ensp;&ensp;&ensp;管理员<input type="radio" name="privilege" value="admin" />
-        普通用户<input type="radio" name="privilege" value="user" checked="checked"/><br/><br/>
+        权限：&ensp;&ensp;&ensp;&ensp;<select name="role">
+                    <c:forEach items="${sessionScope.roles}" var="each">
+                        <option value="${each.rid}">${each.roleName}</option>
+                    </c:forEach>
+                 </select><br/><br/>
+<%--        管理员<input type="radio" name="role" value="1" />--%>
+<%--        普通用户<input type="radio" name="role" value="2" checked="checked"/><br/><br/>--%>
         &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
         <input type="submit" name="submit" value="注册" id="sub" />
         &ensp;<input value="取消" type="reset"/>

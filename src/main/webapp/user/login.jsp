@@ -58,17 +58,14 @@
             if (xmlHttp.readyState==4){
                 var txtHint=xmlHttp.responseText;
                 if (txtHint==0){
-                    //alert("ok");
                     v1=true;
                 }
                 else if(txtHint==1){
                     alert("密码错误请重新输入！！！");
-                    //document.getElementById("note").innerHTML="密码错误请重新输入！！！";
                     v1=false;
                 }
                 else if (txtHint==2) {
                     alert("用户名不存在请先注册！！！");
-                    //document.getElementById("note").innerHTML="用户名不存在请先注册！！！";
                     v1=false;
                 }
             }

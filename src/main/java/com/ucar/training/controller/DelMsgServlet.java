@@ -1,7 +1,7 @@
 package com.ucar.training.controller;
 
 
-import com.ucar.training.service.MessageServiceImp;
+import com.ucar.training.service.impl.MessageServiceImp;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

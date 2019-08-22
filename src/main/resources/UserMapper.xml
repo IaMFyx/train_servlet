@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ucar.training.dao.UserDao">
+    <resultMap id="BaseResultMap" type="com.ucar.training.entity.User">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="realName" jdbcType="VARCHAR" property="realName" />
+        <result column="sex" jdbcType="VARCHAR" property="sex" />
+        <result column="age" jdbcType="VARCHAR" property="age" />
+        <result column="tel" jdbcType="VARCHAR" property="tel" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="role" jdbcType="INTEGER" property="role" />
+        <result column="hobbies" jdbcType="VARCHAR" property="hobbies"/>
+        <result column="sign" jdbcType="VARCHAR" property="sign"/>
+    </resultMap>
+
+    <resultMap id="MenuResultMap" type="com.ucar.training.entity.TMenu">
+        <id column="mid" property="mid"/>
+        <result column="menu_name" property="menuName"/>
+        <result column="url" property="url"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, username, password,realName,sex,age,tel,email,role,hobbies,sign
+    </sql>
+
+    <select id="selectAllUser" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from users
+    </select>
+
+    <select id="selectUser" resultMap="BaseResultMap" parameterType="STRING">
+        select
+        <include refid="Base_Column_List" />
+         from users WHERE username=#{username}
+    </select>
+
+    <select id="selectUserMenu" resultMap="MenuResultMap">
+        SELECT mid,menu_name,url FROM t_menu WHERE mid in(
+        SELECT mid
+        FROM role_menu
+        WHERE rid=#{role})
+    </select>
+
+    <insert id="addUser" parameterType="com.ucar.training.entity.User" keyProperty="id" useGeneratedKeys="true">
+        insert into users(
+        username, password,realName,sex,age,tel,email,role,hobbies,sign
+        )
+        values (#{username},#{password},#{realName},#{sex},#{age},#{tel},#{email},#{role},#{hobbies},#{sign})
+    </insert>
+
+    <delete id="delUser" parameterType="STRING">
+        delete from users where username=#{username}
+    </delete>
+
+    <update id="modifyUser" parameterType="com.ucar.training.entity.User">
+        update users
+        set username=#{username},password=#{password},realName=#{realName},sex=#{sex},age=#{age},
+        tel=#{tel},email=#{email},role=#{role},hobbies=#{hobbies},sign=#{sign}
+        where username=#{username}
+    </update>
+</mapper>

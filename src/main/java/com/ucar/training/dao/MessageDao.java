@@ -10,5 +10,5 @@ public interface MessageDao {
     //删除留言
     public void delMessage(int messageID);
     //返回留言
-    public ArrayList<UserMessage> findAllMessages();
+    public ArrayList<UserMessage> selectAllMessages();
 }

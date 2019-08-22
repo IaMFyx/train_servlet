@@ -1,7 +1,5 @@
 package com.ucar.training.filter;
 
-import com.ucar.training.service.UserServiceImp;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
