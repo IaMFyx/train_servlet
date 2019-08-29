@@ -2,8 +2,11 @@ package com.ucar.training.dao;
 
 import com.ucar.training.entity.TMenu;
 import com.ucar.training.entity.User;
-import java.util.ArrayList;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+@Repository("userDao")
 public interface UserDao {
     /**添加用户
      *

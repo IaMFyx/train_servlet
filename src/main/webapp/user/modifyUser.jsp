@@ -18,7 +18,7 @@
 </head>
 <body>
 <h2>输入需要更改的信息</h2>
-<form name="form1" method="post" action="UpdateUserServlet" onsubmit="return confirm('确认修改？')">
+<form name="form1" method="post" action="${pageContext.request.contextPath}/user/updateUserRequest" onsubmit="return confirm('确认修改？')">
     用户名：&ensp;&ensp;<input name="username" type="text" value="${requestScope.modifiedUser.username}" readonly /><br/><br/>
     密码：&ensp;&ensp;&ensp;&ensp;<input type="text" name="password" value="${requestScope.modifiedUser.password}" readonly/><br/><br/>
     性别：&ensp;&ensp;&ensp;&ensp;
@@ -41,11 +41,10 @@
     邮箱：&ensp;&ensp;&ensp;&ensp;<input type="email" name="email" value="${requestScope.modifiedUser.email}"><br/><br/>
     个人签名：<textarea name="sign" >${requestScope.modifiedUser.sign}
              </textarea><br/><br/>
-    权限：&ensp;&ensp;&ensp;&ensp;管理员<input type="radio" name="privilege" value="1" ${requestScope.modifiedUser.role==1 ?'checked':''}/>
-    普通用户<input type="radio" name="privilege" value="2" ${requestScope.modifiedUser.role==2 ?'checked':''}/><br/><br/>
+    权限：&ensp;&ensp;&ensp;&ensp;管理员<input type="radio" name="role" value="1" ${requestScope.modifiedUser.role==1 ?'checked':''}/>
+    普通用户<input type="radio" name="role" value="2" ${requestScope.modifiedUser.role==2 ?'checked':''}/><br/><br/>
     &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
     <input type="submit" name="submit" value="更新用户信息"  />
-
 </form>
 </body>
 </html>

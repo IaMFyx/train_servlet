@@ -53,13 +53,7 @@ public interface UserService {
     ArrayList<User> getUsers();
 
     /**
-     * 返回当前登录的用户
-     * @return
-     */
-    User getUserNow();
-
-    /**
      * 当前用户可见的菜单
      */
-    ArrayList<TMenu> getUserMenu();
+    ArrayList<TMenu> getUserMenu(User userNow);
 }

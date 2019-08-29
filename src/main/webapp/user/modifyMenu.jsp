@@ -11,7 +11,7 @@
     <title>修改菜单</title>
 </head>
 <body>
-    <form action="UpdateMenuServlet" method="post" onsubmit="return confirm('确认提交')">
+    <form action="updateMenuRequest" method="post" onsubmit="return confirm('确认提交')">
         ID:<input type="text" name="mid" value="${requestScope.modifyMenu.mid}" readonly><br/><br/>
         菜单名:<input type="text" name="menuName" value="${requestScope.modifyMenu.menuName}"><br/><br/>
         URL:<input type="text" name="url" value="${requestScope.modifyMenu.url}"><br/><br/>

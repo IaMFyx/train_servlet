@@ -1,16 +1,17 @@
 package com.ucar.training.service.impl;
 
-import com.ucar.training.dao.imp.UserDaoImp;
+import com.ucar.training.dao.UserDao;
 import com.ucar.training.entity.TMenu;
 import com.ucar.training.entity.User;
 import com.ucar.training.service.UserService;
-
+import org.springframework.stereotype.Service;
+import javax.annotation.Resource;
 import java.util.ArrayList;
 
-
+@Service("userService")
 public class UserServiceImp implements UserService {
-    private static UserDaoImp myDaoImp=new UserDaoImp();
-    private User userNow;
+    @Resource(name = "userDao")
+    private UserDao myDaoImp;
     @Override
     public void register(User user) {
         myDaoImp.addUser(user);
@@ -24,7 +25,6 @@ public class UserServiceImp implements UserService {
             if (user.getUsername().equals(username)){
                 if (user.getPassword().equals(password)){
                     //密码正确
-                    userNow=user;
                     var=0;
                 }
                 else {
@@ -63,12 +63,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User getUserNow() {
-        return userNow;
-    }
-
-    @Override
-    public ArrayList<TMenu> getUserMenu() {
+    public ArrayList<TMenu> getUserMenu(User userNow) {
         return myDaoImp.selectUserMenu(userNow.getRole());
     }
 }

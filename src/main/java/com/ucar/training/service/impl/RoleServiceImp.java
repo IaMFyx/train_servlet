@@ -1,15 +1,18 @@
 package com.ucar.training.service.impl;
 
-import com.ucar.training.dao.imp.RoleDaoImp;
+import com.ucar.training.dao.RoleDao;
 import com.ucar.training.entity.TRole;
 import com.ucar.training.service.RoleService;
-
+import org.springframework.stereotype.Service;
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+@Service("roleService")
 public class RoleServiceImp implements RoleService {
-    private static RoleDaoImp roleDaoImp=new RoleDaoImp();
+    @Resource(name="roleDao")
+    private RoleDao roleDaoImp;
     @Override
     public ArrayList<TRole> getAllRole() {
         return roleDaoImp.selectAllRole();

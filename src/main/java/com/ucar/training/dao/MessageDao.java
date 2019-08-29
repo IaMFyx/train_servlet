@@ -1,9 +1,11 @@
 package com.ucar.training.dao;
 
 import com.ucar.training.entity.UserMessage;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
+@Repository("messageDao")
 public interface MessageDao {
     //添加留言
     public void addMessage(UserMessage userMessage);

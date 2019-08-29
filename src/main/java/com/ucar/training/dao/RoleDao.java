@@ -1,11 +1,12 @@
 package com.ucar.training.dao;
 
 import com.ucar.training.entity.TRole;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Map;
 
+@Repository("roleDao")
 public interface RoleDao {
     /**
      *

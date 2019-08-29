@@ -33,7 +33,7 @@
     <c:forEach items="${sessionScope.userMenu}" var="each">
         <a href="${each.url}">${each.menuName}</a><br><br>
     </c:forEach>
-    <a href="addRole.jsp">增加角色</a><br><br>
+    <a href="chooseMenuRequest">增加角色</a><br><br>
     <a href="login.jsp">退出</a>
 </div>
 <h2 align="center">角色信息</h2>
@@ -44,7 +44,7 @@
         <th>权限</th>
         <th>操作</th>
     </tr>
-    <c:forEach items="${sessionScope.roles}" var="each">
+    <c:forEach items="${requestScope.roles}" var="each">
         <tr>
             <td>${each.rid}</td>
             <td>${each.roleName}</td>
@@ -53,8 +53,8 @@
                     ${eachMenu.menuName}&ensp;&ensp;
                 </c:forEach>
             </td>
-            <td><a href="ModifyRoleServlet?roleID=${each.rid}">修改</a>
-                <a href="DelRoleServlet?roleID=${each.rid}" onclick="return confirm('是否删除？')">删除</a>
+            <td><a href="modifyRoleRequest?roleID=${each.rid}">修改</a>
+                <a href="delRoleRequest?roleID=${each.rid}" onclick="return confirm('是否删除？')">删除</a>
             </td>
         </tr>
     </c:forEach>

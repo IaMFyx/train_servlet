@@ -51,11 +51,11 @@
     <a href="login.jsp">退出</a>
 </div>
 <div class="aaa">
-<form action="UpdateRoleServlet" method="post" onsubmit="return confirm('确认提交')">
+<form action="updateRoleRequest" method="post" onsubmit="return confirm('确认提交')">
     角色名：<input type="text" name="roleName" value="${requestScope.modifyRole.roleName}"/><br/><br/>
     角色ID：<input type="text" name="roleID" value="${requestScope.modifyRole.rid}" readonly/><br/><br/>
     选择权限：<br/><br/>
-    <c:forEach items="${sessionScope.menus}" var="each">
+    <c:forEach items="${requestScope.menus}" var="each">
         ${each.menuName}<input type="checkbox" name="menu" value="${each.mid}" ${requestScope.roleMenuName.contains(each.menuName) eq true ? 'checked':''}/><br/><br/>
     </c:forEach>
     <input type="submit" value="提交">

@@ -36,7 +36,8 @@
     <a href="messageBord.jsp">留言板</a>
 </div>
 <h1>填写留言信息</h1>
-<form action="AddMessageServlet" method="post" onsubmit="return confirm('确认提交？')">
+<form action="${pageContext.request.contextPath}/user/addMessageRequest" method="post" onsubmit="return confirm('确认提交？')">
+    <input hidden type="hidden" name="nowUsername" value="${sessionScope.userNow.username}"/>
     <table border="1" align="center">
         <tr>
             <td>留言标题：</td>

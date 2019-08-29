@@ -1,9 +1,11 @@
 package com.ucar.training.dao;
 
 import com.ucar.training.entity.TMenu;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
+@Repository("menuDao")
 public interface MenuDao {
     /**
      *

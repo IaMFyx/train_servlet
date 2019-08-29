@@ -20,7 +20,7 @@
 </head>
 <body>
 <h2>输入用户信息进行注册</h2>
-    <form name="form1" method="post" action="../RegisterServlet" onsubmit="return checkSubmit()">
+    <form name="form1" method="post" action="${pageContext.request.contextPath}/user/registerRequest" onsubmit="return checkSubmit()">
         用户名：&ensp;&ensp;<input name="username" type="text" maxlength="16" onchange="checkName()" id="username" /><font id="font1" color="red" ></font><br/><br/>
         姓名：&ensp;&ensp;&ensp;&ensp;<input name="realName" type="text"/><br/><br/>
         性别：&ensp;&ensp;&ensp;&ensp;男<input type="radio" name="sex" value="男" checked="checked"/>
@@ -39,12 +39,14 @@
         个人签名：<textarea name="sign" >今天有点小帅……
              </textarea><br/><br/>
         权限：&ensp;&ensp;&ensp;&ensp;<select name="role">
-                    <c:forEach items="${sessionScope.roles}" var="each">
-                        <option value="${each.rid}">${each.roleName}</option>
+                    <option value="2">普通用户</option>
+                    <option value="1">管理员</option>
+                    <c:forEach items="${requestScope.roles}" var="each">
+                        <c:if test="${each.rid!=1 and each.rid!=2}">
+                            <option value="${each.rid}">${each.roleName}</option>
+                        </c:if>
                     </c:forEach>
                  </select><br/><br/>
-<%--        管理员<input type="radio" name="role" value="1" />--%>
-<%--        普通用户<input type="radio" name="role" value="2" checked="checked"/><br/><br/>--%>
         &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
         <input type="submit" name="submit" value="注册" id="sub" />
         &ensp;<input value="取消" type="reset"/>
@@ -84,7 +86,7 @@
                         }
                     }
                 }
-                var url="../RegisterServlet?username="+username;
+                var url="${pageContext.request.contextPath}/user/ajaxJudgeRequest?username="+username;
 
                 xmlHttp.onreadystatechange=function (){
                     if (xmlHttp.readyState==4&&xmlHttp.status==200){

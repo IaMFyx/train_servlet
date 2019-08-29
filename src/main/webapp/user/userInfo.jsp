@@ -51,7 +51,7 @@
         <th>个人签名</th>
     </tr>
     <c:if test="${sessionScope.userNow.role==1}">
-    <c:forEach items="${users}" var="user">
+    <c:forEach items="${requestScope.users}" var="user">
         <c:if test="${user.role==2}">
         <tr align="center">
             <td>${user.username}</td>
@@ -63,12 +63,11 @@
             <td>${user.email}</td>
             <td>${user.hobbies}</td>
             <td>${user.sign}</td>
-            <td><a href="ModifyUserServlet?username=${user.username}">修改</a>
-                <a href="DeleteUserServlet?username=${user.username}" onclick="return confirm('是否删除？')">删除</a></td>
+            <td><a href="${pageContext.request.contextPath}/user/modifyUserRequest?username=${user.username}">修改</a>
+                <a href="${pageContext.request.contextPath}/user/delUserRequest?username=${user.username}" onclick="return confirm('是否删除？')">删除</a></td>
         </tr>
         </c:if>
     </c:forEach>
-<%--        <a href="register.jsp">增加用户</a>--%>
     </c:if>
     <c:if test="${sessionScope.userNow.role==2}">
         <tr align="center">

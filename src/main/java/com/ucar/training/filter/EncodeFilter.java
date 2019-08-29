@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(filterName = "EncodeFilter",urlPatterns = "/*")
+//@WebFilter(filterName = "EncodeFilter",urlPatterns = "/*")
 public class EncodeFilter implements Filter {
     public void destroy() {
     }

@@ -56,12 +56,12 @@
             <th>菜单名</th>
             <th>url</th>
         </tr>
-        <c:forEach items="${sessionScope.menus}" var="each">
+        <c:forEach items="${requestScope.menus}" var="each">
             <tr>
                 <td>${each.menuName}</td>
                 <td>${each.url}</td>
-                <td><a href="ModifyMenuServlet?menuID=${each.mid}">修改</a>
-                    <a href="DelMenuServlet?menuID=${each.mid}" onclick="return confirm('是否删除？')">删除</a>
+                <td><a href="${pageContext.request.contextPath}/user/modifyMenuRequest?menuID=${each.mid}">修改</a>
+                    <a href="${pageContext.request.contextPath}/user/delMenuRequest?menuID=${each.mid}" onclick="return confirm('是否删除？')">删除</a>
                 </td>
             </tr>
         </c:forEach>

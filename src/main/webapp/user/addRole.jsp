@@ -51,10 +51,10 @@
     <a href="login.jsp">退出</a>
 </div>
 <div class="aaa">
-    <form action="AddRoleServlet" method="post">
+    <form action="addRoleRequest" method="post">
         角色名:<input type="text" name="roleName"/><br/><br/>
         选择权限:<br/><br/>
-        <c:forEach items="${sessionScope.menus}" var="each">
+        <c:forEach items="${requestScope.menus}" var="each">
             ${each.menuName}<input type="checkbox" name="menu" value="${each.mid}"/>
             <br/><br/>
         </c:forEach>
