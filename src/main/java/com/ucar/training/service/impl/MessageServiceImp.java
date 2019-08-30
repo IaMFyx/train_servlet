@@ -1,7 +1,6 @@
 package com.ucar.training.service.impl;
 
 import com.ucar.training.dao.MessageDao;
-import com.ucar.training.dao.imp.MessageDaoImp;
 import com.ucar.training.entity.UserMessage;
 import com.ucar.training.service.MessageService;
 import org.springframework.stereotype.Service;
