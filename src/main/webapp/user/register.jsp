@@ -54,6 +54,21 @@
 <a href="login.jsp">已有账号，点击登录</a>
 </body>
 </html>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+    var username=document.getElementById("username").value;
+    $(document).ready(function () {
+       $("username").onchange(function () {
+           $.ajax({
+               url:"${pageContext.request.contextPath}/user/ajaxJudgeRequest",
+               data:{"username":username},
+               success:function(result){
+               $("font1").html(result)
+           }});
+       });
+    });
+</script>
 <script>
     var v1,v2,v3,xmlHttp;
 

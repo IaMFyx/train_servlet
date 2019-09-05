@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ucar.training.dao.GoodDao">
+    <resultMap id="goodMap" type="com.ucar.training.entity.Goods">
+        <id column="id" property="id"/>
+        <result column="good_name" property="goodName"/>
+        <result column="good_desc" property="goodDesc"/>
+        <result column="good_price" property="goodPrice"/>
+        <result column="good_inventory" property="goodInventory"/>
+    </resultMap>
+
+    <select id="selectGoods" resultMap="goodMap">
+        select id, good_name, good_desc, good_price, good_inventory from t_goods;
+    </select>
+
+    <select id="selectGood" resultMap="goodMap" parameterType="INTEGER">
+        SELECT id, good_name, good_desc, good_price, good_inventory from t_goods where id=#{id};
+    </select>
+
+    <select id="selectGoodsByName" resultMap="goodMap">
+        SELECT g.id, good_name, good_desc, good_price, good_inventory FROM t_goods g
+        LEFT JOIN second_level s on g.pid=s.id
+        LEFT JOIN fist_level f on s.pid=f.id
+        WHERE f.level_name=#{arg0} or s.level_name=#{arg0} or good_name=#{arg0}
+    </select>
+
+    <insert id="insertGood" parameterType="com.ucar.training.entity.Goods">
+        insert into t_goods(good_name,good_desc,good_price,good_inventory)
+        values (#{goodName},#{goodDesc},#{goodPrice},#{goodInventory});
+    </insert>
+
+    <delete id="delGood" parameterType="INTEGER">
+        delete from t_goods where id=#{id};
+    </delete>
+
+    <update id="updateGood" parameterType="com.ucar.training.entity.Goods">
+        update t_goods set good_name=#{goodName},set good_desc=#{goodDesc},
+        set good_price=#{goodPrice},set good_inventory=#{goodInventory}
+        where id=#{id};
+    </update>
+
+    <update id="updateGoodsInventory">
+        update t_goods set good_inventory=#{arg1} where id=#{arg0};
+    </update>
+</mapper>

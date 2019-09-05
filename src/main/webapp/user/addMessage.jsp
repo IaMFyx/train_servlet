@@ -33,7 +33,7 @@
 <div class="menu">
     <a href="login.jsp">退出</a>
     <br><br>
-    <a href="messageBord.jsp">留言板</a>
+    <a href="messageRequest">留言板</a>
 </div>
 <h1>填写留言信息</h1>
 <form action="${pageContext.request.contextPath}/user/addMessageRequest" method="post" onsubmit="return confirm('确认提交？')">

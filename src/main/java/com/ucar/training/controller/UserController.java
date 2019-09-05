@@ -1,19 +1,14 @@
 package com.ucar.training.controller;
 
-import com.ucar.training.entity.TMenu;
-import com.ucar.training.entity.TRole;
-import com.ucar.training.entity.User;
-import com.ucar.training.entity.UserMessage;
-import com.ucar.training.service.MenuService;
-import com.ucar.training.service.MessageService;
-import com.ucar.training.service.RoleService;
-import com.ucar.training.service.UserService;
+import com.ucar.training.entity.*;
+import com.ucar.training.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +24,11 @@ public class UserController {
     private MessageService messageService;
     @Resource
     private RoleService roleService;
+    @Resource
+    private GoodService goodService;
+    @Resource
+    private CartGoodsService cartGoodsService;
+
 
     @RequestMapping("/registerRequest")
     public String register(HttpServletRequest request, HttpServletResponse response) throws IOException{
@@ -63,6 +63,7 @@ public class UserController {
         else if(var==1)
         {
             //密码不正确
+
             response.getWriter().print("<script language='javascript' charset = \"UTF-8\">alert('密码不正确！');window.location='login.jsp';</script>");
             return null;
         }
@@ -251,5 +252,72 @@ public class UserController {
         }
         request.setAttribute("roles",roleService.getAllRole());
         return "role.jsp";
+    }
+
+    @RequestMapping("/goodsInfoRequest")
+    public String goodsInfo(Model model){
+
+        model.addAttribute("goods",goodService.getAllGoods());
+        return "goods.jsp";
+    }
+
+    @RequestMapping("/searchGoodsRequest")
+    public String searchGoods(String keyName,Model model){
+        ArrayList<Goods> goods=goodService.selectGoodsByName(keyName);
+        if (goods.size()==0){
+            model.addAttribute("goods",goodService.getAllGoods());
+        }
+        else {
+            model.addAttribute("goods",goods);
+        }
+        return "goods.jsp";
+    }
+
+    @RequestMapping("/addToCartGoodsRequest")
+    public void addToCartGoods(int goodID,String username){
+        if (cartGoodsService.getCartGoods(goodID,username)==null){
+            cartGoodsService.addToCartGoods(goodID,1,username);
+        }
+    }
+
+    @RequestMapping("/cartGoodsInfoRequest")
+    public String cartGoodsInfo(Model model, String username){
+        model.addAttribute("cartGoods",cartGoodsService.getAllCartGoods(username));
+        return "cart.jsp";
+    }
+
+    @RequestMapping("/delCartGoodsRequest")
+    public String delCartGoods(int goodID,String username,Model model){
+        cartGoodsService.delCartGoods(goodID,username);
+        model.addAttribute("cartGoods",cartGoodsService.getAllCartGoods(username));
+        return "cart.jsp";
+    }
+
+    @RequestMapping("/goodsAjaxJudgeRequest")
+    public void goodsAjaxJudge(int goodID,int goodNum,String username){
+        cartGoodsService.modifyGoodNum(goodID,goodNum,username);
+    }
+
+    @RequestMapping("/delAllCartGoodsRequest")
+    public String delAllCartGoods(String username){
+        cartGoodsService.delAllCartGoods(username);
+        return "cart.jsp";
+    }
+
+    @RequestMapping("/buyAllCartGoodsRequest")
+    public String buyAllCartGoods(String username,Model model){
+        ArrayList<CartGoods> cartGoods=cartGoodsService.getAllCartGoods(username);
+        model.addAttribute("cartGoods",cartGoods);
+        double totalPrice=0;
+        for (CartGoods each:cartGoods){
+            Goods good=each.getGood();
+            totalPrice+=each.getGoodNum()*good.getGoodPrice();
+            goodService.modifyGoodsNum(each.getGoodID(),good.getGoodInventory()-each.getGoodNum());
+
+        }
+        String.format("%.2f",totalPrice);
+        model.addAttribute("totalPrice",totalPrice);
+        cartGoodsService.delAllCartGoods(username);
+        return "order.jsp";
     }
 }
